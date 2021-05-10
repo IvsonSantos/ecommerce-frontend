@@ -28,8 +28,10 @@ export class ProductService {
 
   getProductCategories(): Observable<ProductCategory[]> {
 
+    console.log('Chamando getProductCategories IVSON');
+
     return this.httpClient.get<GetResponseProductCategory>(this.categoryUrl).pipe(
-      map(response => response._embedded.productCategories)
+      map(response => response._embedded.productCategory)
     );
   }
 
@@ -44,6 +46,6 @@ interface GetResponseProducts {
 
 interface GetResponseProductCategory {
   _embedded: {
-    productCategories: ProductCategory[];
+    productCategory: ProductCategory[];
   }
 }
