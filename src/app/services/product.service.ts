@@ -21,9 +21,7 @@ export class ProductService {
 
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${categoryId}`;
 
-    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
-      map(response => response._embedded.products)
-    )
+    return this.getProducts(searchUrl);
   }
 
   getProductCategories(): Observable<ProductCategory[]> {
@@ -35,6 +33,18 @@ export class ProductService {
     );
   }
 
+  searchProducts(parameterKeyword: string): Observable<Product[]> {
+    const searchUrl = `${this.baseUrl}/search/findByNameContaining?name=${parameterKeyword}`;
+
+    return this.getProducts(searchUrl);
+  }
+
+
+  private getProducts(searchUrl: string): Observable<Product[]> {
+    return this.httpClient.get<GetResponseProducts>(searchUrl).pipe(
+      map(response => response._embedded.products)
+    );
+  }
 }
 
 // unwraps the JSON from Spring Data REST _embedded entry
