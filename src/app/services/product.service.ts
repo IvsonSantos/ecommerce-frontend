@@ -26,7 +26,7 @@ export class ProductService {
 
   getProductCategories(): Observable<ProductCategory[]> {
 
-    console.log('Chamando getProductCategories IVSON');
+    //console.log('Chamando getProductCategories IVSON');
 
     return this.httpClient.get<GetResponseProductCategory>(this.categoryUrl).pipe(
       map(response => response._embedded.productCategory)
