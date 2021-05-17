@@ -7,6 +7,7 @@ import { CartItem } from '../commom/cart-item';
 })
 export class CartService {
 
+
   cartItems: CartItem[] = [];
   totalPrice: Subject<number> = new Subject<number>();  // subject is a subclass of Observable
   totalQuantity: Subject<number> = new Subject<number>();  // subject is a subclass of Observable
@@ -68,6 +69,30 @@ export class CartService {
 
     console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
     console.log('-----');
+  }
+
+  decrementQuantity(cartItem: CartItem) {
+
+    cartItem.quantity--;
+
+    if (cartItem.quantity === 0) {
+      this.remove(cartItem);
+    } else {
+      this.computeCartTotals();
+    }
+
+  }
+
+  remove(cartItem: CartItem) {
+
+    // get index of the item on the array
+    const itemIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id === cartItem.id);
+
+    // if found, remove the item
+    if (itemIndex > -1) {
+      this.cartItems.splice(itemIndex, 1);
+      this.computeCartTotals();
+    }
   }
 
 }
