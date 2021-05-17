@@ -16,12 +16,14 @@
                     </td>
                     <td>
                         <p>{{ item.name }} </p>
-                        <p>{{ item.unitPricce | currency: 'EUR' }} </p>
+                        <p>{{ item.unitPrice | currency: 'EUR' }} </p>
                     </td>
                     <td>
                        <div class="items">
                            <label>Quantity: </label> {{ item.quantity }}
                        </div> 
+
+                       <p class="mt-2">Subtotal: {{ item.quantity * item.unitPrice | currency: 'EUR' }}</p>
                     </td>
                 </tr>
 
