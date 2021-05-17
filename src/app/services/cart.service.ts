@@ -7,7 +7,7 @@ import { CartItem } from '../commom/cart-item';
 })
 export class CartService {
 
-  cartItem: CartItem[] = [];
+  cartItems: CartItem[] = [];
   totalPrice: Subject<number> = new Subject<number>();  // subject is a subclass of Observable
   totalQuantity: Subject<number> = new Subject<number>();  // subject is a subclass of Observable
 
@@ -19,9 +19,9 @@ export class CartService {
     let alreadyExistsInCart: boolean = false;
     let existingCartItem: CartItem = undefined;
 
-    if (this.cartItem.length > 0) {
+    if (this.cartItems.length > 0) {
       // find the item on the cart based on the item id
-      existingCartItem = this.cartItem.find(tempCardItem => tempCardItem.id === item.id);
+      existingCartItem = this.cartItems.find(tempCardItem => tempCardItem.id === item.id);
 
       // check if we found it
       alreadyExistsInCart = (existingCartItem != undefined);
@@ -33,7 +33,7 @@ export class CartService {
       existingCartItem.quantity++;
     } else {
       // just add the item
-      this.cartItem.push(item);
+      this.cartItems.push(item);
     }
 
     // compute cart total
@@ -46,7 +46,7 @@ export class CartService {
     let totalPriceValue = 0;
     let totalQuantityValue = 0;
 
-    for (let item of this.cartItem) {
+    for (let item of this.cartItems) {
       totalPriceValue += item.quantity * item.unitPrice;
       totalQuantityValue += item.quantity;
     }
@@ -61,7 +61,7 @@ export class CartService {
 
   logCartdata(totalPriceValue: number, totalQuantityValue: number) {
     console.log(`Contents of the cart`);
-    for (let item of this.cartItem) {
+    for (let item of this.cartItems) {
       const subTotalPrice = item.quantity * item.unitPrice;
       console.log(`name: ${item.name}, quantity=${item.quantity}, unitPrice=${item.unitPrice}, subTotalPrice=${subTotalPrice}`);
     }
