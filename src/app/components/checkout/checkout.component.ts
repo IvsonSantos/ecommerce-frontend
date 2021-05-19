@@ -14,8 +14,8 @@ export class CheckoutComponent implements OnInit {
   totalPrice: number = 0;
   totalQuantity: number = 0;
 
-  creditCardYears:number[] = [];
   creditCardMonths:number[] = [];
+  creditCardYears:number[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private luv2shopFormService: Luv2ShopFormService) { }
@@ -59,7 +59,7 @@ export class CheckoutComponent implements OnInit {
 
     this.luv2shopFormService.getCreditCardMonths(startMonth).subscribe(
       data => {
-        console.log("Retrieve credti card months: " + JSON.stringify(data));
+        console.log("Retrieve credit card months: " + JSON.stringify(data));
         this.creditCardMonths = data;
       }
     )
@@ -67,7 +67,7 @@ export class CheckoutComponent implements OnInit {
     // populate credit card years
     this.luv2shopFormService.getCreditCardYears().subscribe(
       data => {
-        console.log("Retrieve credti card months: " + JSON.stringify(data));
+        console.log("Retrieve credit card years: " + JSON.stringify(data));
         this.creditCardYears = data;
       }
     )
