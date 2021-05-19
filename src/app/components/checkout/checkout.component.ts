@@ -92,6 +92,11 @@ export class CheckoutComponent implements OnInit {
     console.log("Handling the submission");
     console.log(this.checkoutFormGroup.get('customer').value);
     console.log("Email: " + this.checkoutFormGroup.get('customer').value.email);
+
+    console.log("Shipping Address: " + this.checkoutFormGroup.get('shippingAddress').value.country.name);
+    console.log("Shipping Address State: " + this.checkoutFormGroup.get('shippingAddress').value.state.name);
+
+
   }
 
   copyShippingAddressToBillingAddress(event) {
@@ -136,8 +141,8 @@ export class CheckoutComponent implements OnInit {
     const countryCode = formGroup.value.country.code;
     const countryName = formGroup.value.country.name;
 
-    console.log(`{formGroupName} country code : ${countryCode}`);
-    console.log(`{formGroupName} country name : ${countryName}`);
+    console.log(`${formGroupName} country code : ${countryCode}`);
+    console.log(`${formGroupName} country name : ${countryName}`);
 
     this.luv2shopFormService.getStates(countryCode).subscribe(
       data => {
