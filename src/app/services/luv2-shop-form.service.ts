@@ -21,7 +21,7 @@ export class Luv2ShopFormService {
     return of(data); // .of operator from RJXJS will wrap an OBJECT as OBSERVABLE 
   }
 
-  getCreditCardyears(): Observable<number[]> {
+  getCreditCardYears(): Observable<number[]> {
 
     let data: number[] = [];
 
