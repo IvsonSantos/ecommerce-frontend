@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Country } from 'src/app/commom/country';
 import { State } from 'src/app/commom/state';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
+import { Luv2Shopvalidators } from 'src/app/validators/luv2-shopvalidators';
 
 @Component({
   selector: 'app-checkout',
@@ -31,8 +32,18 @@ export class CheckoutComponent implements OnInit {
     // cria o form
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
-        firstName: new FormControl('', [Validators.required, Validators.minLength(2)]),
-        lastName: new FormControl('', [Validators.required, Validators.minLength(2)]),
+        firstName: new FormControl('', [
+              Validators.required, 
+              Validators.minLength(2), 
+              Luv2Shopvalidators.notOnlyWhiteSpace
+          ]
+        ),
+        lastName: new FormControl('', [
+              Validators.required, 
+              Validators.minLength(2),
+              Luv2Shopvalidators.notOnlyWhiteSpace
+          ]
+        ),
         email: new FormControl('', 
           [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]
         )
