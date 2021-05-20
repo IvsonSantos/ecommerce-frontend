@@ -97,8 +97,18 @@ export class CheckoutComponent implements OnInit {
 
     console.log("Shipping Address: " + this.checkoutFormGroup.get('shippingAddress').value.country.name);
     console.log("Shipping Address State: " + this.checkoutFormGroup.get('shippingAddress').value.state.name);
+  }
 
+  get firstName() {
+    return this.checkoutFormGroup.get('customer.firstName');
+  }
 
+  get lastName() {
+    return this.checkoutFormGroup.get('customer.lastName');
+  }
+
+  get email() {
+    return this.checkoutFormGroup.get('customer.email');
   }
 
   copyShippingAddressToBillingAddress(event) {
