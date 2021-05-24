@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Country } from 'src/app/commom/country';
 import { State } from 'src/app/commom/state';
+import { CartService } from 'src/app/services/cart.service';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 import { Luv2Shopvalidators } from 'src/app/validators/luv2-shopvalidators';
 
@@ -25,9 +26,12 @@ export class CheckoutComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder,
-              private luv2shopFormService: Luv2ShopFormService) { }
+              private luv2shopFormService: Luv2ShopFormService,
+              private cartService: CartService) { }
 
   ngOnInit(): void {
+
+    this.reviewCartDetails();
 
     // cria o form
     this.checkoutFormGroup = this.formBuilder.group({
@@ -120,6 +124,18 @@ export class CheckoutComponent implements OnInit {
       }
     );
 
+  }
+
+  reviewCartDetails() {
+    // subscrible to cartService.totalQuantity
+    this.cartService.totalQuantity.subscribe(
+      data  => this.totalQuantity = data 
+    );
+
+    // subscrible to cartService.totalPrice
+    this.cartService.totalPrice.subscribe(
+      data  => this.totalPrice = data 
+    );
   }
 
   onSubmit() {
