@@ -106,6 +106,9 @@
                                 <div *ngIf="shippingAddressStreet.errors.required || shippingAddressStreet.errors.notOnlyWhiteSpaces">
                                     Street is required
                                 </div>
+                                <div *ngIf="shippingAddressStreet.errors.minlength">
+                                    Street must be at least 2 characters long
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,6 +123,9 @@
                                         class="alert alert-danger mt-1">                                    
                                     <div *ngIf="shippingAddressCity.errors.required || shippingAddressCity.errors.notOnlyWhiteSpaces">
                                         City is required
+                                    </div>
+                                    <div *ngIf="shippingAddressCity.errors.minlength">
+                                        City must be at least 2 characters long
                                     </div>
                                 </div>
                             </div>
@@ -156,6 +162,9 @@
                                         class="alert alert-danger mt-1">                                    
                                     <div *ngIf="shippingAddressZipCode.errors.required || shippingAddressZipCode.errors.notOnlyWhiteSpaces">
                                         Zip Code is required
+                                    </div>
+                                    <div *ngIf="shippingAddressZipCode.errors.minlength">
+                                        Zip Code must be at least 2 characters long
                                     </div>
                                 </div>
 
@@ -209,6 +218,9 @@
                                     <div *ngIf="billingAddressStreet.errors.required">
                                         Street is required
                                     </div>
+                                    <div *ngIf="billingAddressStreet.errors.minlength">
+                                        Street must be at least 2 characters long
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -224,6 +236,9 @@
                                         class="alert alert-danger mt-1">                                    
                                     <div *ngIf="billingAddressCity.errors.required">
                                         City is required
+                                    </div>
+                                    <div *ngIf="billingAddressCity.errors.minlength">
+                                        City must be at least 2 characters long
                                     </div>
                                 </div>
                             </div>
@@ -260,6 +275,9 @@
                                         class="alert alert-danger mt-1">                                    
                                     <div *ngIf="billingAddressZipCode.errors.required">
                                         Zip Code is required
+                                    </div>
+                                    <div *ngIf="billingAddressZipCode.errors.minlength">
+                                        Zip code must be at least 2 characters long
                                     </div>
                                 </div>
                             </div>
